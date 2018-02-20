@@ -14,17 +14,17 @@ namespace TCPEchoServerIterative
     {
         static void Main(string[] args)
         {
-            IPAddress ip = IPAddress.Parse("10.200.123.145");
+            IPAddress ip = IPAddress.Parse("192.168.6.238");
             TcpListener serverSocket = new TcpListener(ip, 6789);
             serverSocket.Start();
             Console.WriteLine("Server started");
-            
-            TcpClient connectionSocket = serverSocket.AcceptTcpClient();
-            EchoService service = new EchoService(connectionSocket);
-            service.DoIt();
-                
 
-            
+            while (true)
+            {
+                TcpClient connectionSocket = serverSocket.AcceptTcpClient();
+                EchoService service = new EchoService(connectionSocket);
+                service.DoIt();
+            }
         }
     }
 }
